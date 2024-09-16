@@ -1,0 +1,103 @@
+{
+	"info": {
+		"_postman_id": "4d2c403a-6eda-4389-a775-715597eb9790",
+		"name": "ParamInfo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "38376041"
+	},
+	"item": [
+		{
+			"name": "https://api.restful-api.dev/objects",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"// Fixed the regular expression syntax for date/time format",
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"    pm.response.to.be.json;",
+							"});",
+							"",
+							"pm.test(\"Response has a id property & is not null\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.id).to.be.a('string').and.not.eq(null);",
+							"});",
+							"",
+							"pm.test(\"Checking name property and asserting the value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.name).to.be.a('string').and.equals(\"Apple Max Pro 1TB\");",
+							"});",
+							"",
+							"pm.test(\"createdAt property is not null \", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.createdAt).to.exist;",
+							"    pm.expect(jsonData.createdAt).not.eq(null);",
+							"});",
+							"",
+							"pm.test(\"Response has a data object\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data).to.be.an('object');",
+							"});",
+							"",
+							"pm.test(\"checking year property & value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.year).to.exist;",
+							"    pm.expect(jsonData.data.year).to.be.a('Number');",
+							"    pm.expect(jsonData.data.year).to.equals(2023)",
+							"});",
+							"",
+							"pm.test(\"Checking price property & value\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data.price).to.exist;",
+							"    pm.expect(jsonData.data.year).to.be.a('Number');",
+							"    pm.expect(jsonData.data.price).to.equals(7999.99)",
+							"});",
+							"",
+							"pm.test(\"Response has a CPU model property\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[\"CPU model\"]).to.exist.and.to.be.a('string');",
+							"});",
+							"",
+							"pm.test(\"Response has a Hard disk size property\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    pm.expect(jsonData.data[\"Hard disk size\"]).to.exist.and.to.be.a('string');",
+							"});",
+							"",
+							"",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\"name\": \"Apple Max Pro 1TB\",\n\"data\": {\n\"year\": 2023,\n\"price\": 7999.99,\n\"CPU model\": \"Apple ARM A7\",\n\"Hard disk size\": \"1 TB\"\n}\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://api.restful-api.dev/objects",
+					"protocol": "https",
+					"host": [
+						"api",
+						"restful-api",
+						"dev"
+					],
+					"path": [
+						"objects"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
